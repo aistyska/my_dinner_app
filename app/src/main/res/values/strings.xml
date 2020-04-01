@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">My Dinner</string>
+    <string name="login_username">Prisijungimo vardas</string>
+    <string name="login_password">Slaptažodis</string>
+    <string name="login_submit">Prisijungti</string>
+    <string name="login_register">Registruotis</string>
+    <string name="login_rememberme">Prisiminti mane</string>
+</resources>
