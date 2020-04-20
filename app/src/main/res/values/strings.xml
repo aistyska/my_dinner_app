@@ -5,4 +5,5 @@
     <string name="login_submit">Prisijungti</string>
     <string name="login_register">Registruotis</string>
     <string name="login_rememberme">Prisiminti mane</string>
+    <string name="login_invalid_credentials">Klaidingai įvestas prisijungimo vardas arba slaptažodis</string>
 </resources>
