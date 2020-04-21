@@ -36,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
                 username.setError(null);
                 password.setError(null);
 
-                if (isValidUsername(input_username) && isValidPassword(input_password)) {
+                if (Validation.isValidUsername(input_username) && Validation.isValidPassword(input_password)) {
                     Toast.makeText(LoginActivity.this, "Sveiki, " + username.getText().toString() + "!",
                             Toast.LENGTH_LONG).show();
 
@@ -52,22 +52,5 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    public static boolean isValidUsername(String username) {
-        final String USERNAME_PATTERN = "^[a-zA-Z]{3,20}$";
-
-        Pattern pattern = Pattern.compile(USERNAME_PATTERN);
-        Matcher matcher = pattern.matcher(username);
-
-        return matcher.matches();
-    }
-
-    public static boolean isValidPassword(String password) {
-        final String USERNAME_PATTERN = "^[a-zA-Z0-9.!@_]{5,20}$";
-
-        Pattern pattern = Pattern.compile(USERNAME_PATTERN);
-        Matcher matcher = pattern.matcher(password);
-
-        return matcher.matches();
-    }
 
 }
