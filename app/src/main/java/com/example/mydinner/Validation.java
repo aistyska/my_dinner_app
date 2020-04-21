@@ -23,5 +23,12 @@ public class Validation {
         return matcher.matches();
     }
 
+    public static boolean isValidEmail(String email) {
+        final String EMAIL_PATTERN = "^([a-zA-Z0-9])+[\\w.-]*@(([\\w-])+\\.)+([a-zA-Z]){2,}$";
 
+        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+        Matcher matcher = pattern.matcher(email);
+
+        return matcher.matches() && email.length() >= 10 && email.length() <= 50;
+    }
 }

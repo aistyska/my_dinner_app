@@ -6,4 +6,10 @@
     <string name="login_register">Registruotis</string>
     <string name="login_rememberme">Prisiminti mane</string>
     <string name="login_invalid_credentials">Klaidingai įvestas prisijungimo vardas arba slaptažodis</string>
+    <string name="register_registration">Registracija</string>
+    <string name="register_email">El. paštas</string>
+    <string name="register_instructions">Užpildykite registracijos formą. Įveskite prisijungimo vardą, el. pašto adresą ir susigalvotą slaptažodį</string>
+    <string name="register_invalid_username">Prisijungimo vardas turi būti sudarytas iš 3-20 raidžių</string>
+    <string name="register_invalid_password">Slaptažodį turi būti sudarytas iš 5-20 simbolių (raidžių, skaičių bei .!@_)</string>
+    <string name="register_ivalid_email">El. pašto adresą turi sudaryti nuo 10 iki 50 simbolių</string>
 </resources>
