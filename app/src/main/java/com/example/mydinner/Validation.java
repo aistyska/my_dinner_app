@@ -15,9 +15,9 @@ public class Validation {
     }
 
     public static boolean isValidPassword(String password) {
-        final String USERNAME_PATTERN = "^[a-zA-Z0-9.!@_]{5,20}$";
+        final String PASSWORD_PATTERN = "^[a-zA-Z0-9.!@_]{5,20}$";
 
-        Pattern pattern = Pattern.compile(USERNAME_PATTERN);
+        Pattern pattern = Pattern.compile(PASSWORD_PATTERN);
         Matcher matcher = pattern.matcher(password);
 
         return matcher.matches();

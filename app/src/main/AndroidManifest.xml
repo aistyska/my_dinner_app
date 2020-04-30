@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".NewDinnerActivity"></activity>
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -16,8 +17,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SearchActivity"/>
-        <activity android:name=".RegisterActivity"/>
+        <activity android:name=".SearchActivity" />
+        <activity android:name=".RegisterActivity" />
     </application>
 
 </manifest>

@@ -4,21 +4,22 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 public class User {
-    private String usernameRegister, password, email;
+    private String username, password, email;
+
+    private SharedPreferences sharedPreferences;
     private static final String PREFERENCES_FILE_NAME = "com.example.mydinner";
     private static final String USERNAME_KEY = "username";
     private static final String PASSWORD_KEY = "password";
-    private static final String  REMEMBER_ME_KEY = "remember_me";
-    private SharedPreferences sharedPreferences;
+    private static final String REMEMBER_ME_KEY = "remember_me";
 
-    // Use for new user registration
-    public User(String usernameRegister, String password, String email) {
-        this.usernameRegister = usernameRegister;
+    // Constructor for new user registration
+    public User(String username, String password, String email) {
+        this.username = username;
         this.password = password;
         this.email = email;
     }
 
-    // Use to login a user(remembered)
+    // Constructor to login a user(remembered)
     public User(Context context) {
         this.sharedPreferences = context.getSharedPreferences(User.PREFERENCES_FILE_NAME, Context.MODE_PRIVATE);
     }
@@ -50,11 +51,11 @@ public class User {
 
     // for registration
     public String getUsernameForRegistration() {
-        return this.usernameRegister;
+        return this.username;
     }
 
     public void setUsernameForRegistration(String username) {
-        this.usernameRegister = username;
+        this.username = username;
     }
 
     public String getPasswordForRegistration() {

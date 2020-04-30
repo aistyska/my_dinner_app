@@ -24,7 +24,7 @@ public class LoginActivity extends AppCompatActivity {
 
         final CheckBox checkBoxRememberMe = findViewById(R.id.remember_me_check);
 
-        final User user = new User(getApplicationContext());
+        final User user = new User(LoginActivity.this);
         checkBoxRememberMe.setChecked(user.isRemembered());
 
         // to check if checkbox was checked
@@ -53,14 +53,12 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "Sveiki, " + username.getText().toString() + "!",
                             Toast.LENGTH_LONG).show();
 
+                    user.setUsernameForLogin(input_username);
+                    user.setPasswordForLogin(input_password);
                     // to check if checkbox is checked when user tries to login
                     if (checkBoxRememberMe.isChecked()) {
-                        user.setUsernameForLogin(input_username);
-                        user.setPasswordForLogin(input_password);
                         user.setRemembered(true);
                     } else {
-                        user.setUsernameForLogin(input_username);
-                        user.setPasswordForLogin(input_password);
                         user.setRemembered(false);
                     }
 
