@@ -17,11 +17,14 @@
     <string name="add_dinner">Pietų pridėjimas</string>
     <string name="add_dinner_instructions">Užpildykite naujų pietų pridėjimo formą</string>
     <string name="add_dinner_type">Patiekalo tipas</string>
+    <string name="dish_type_error">Pažymėkite patiekalo tipą</string>
     <string name="dinner_type_soup">Sriuba</string>
     <string name="dinner_type_main">Pagrindinis</string>
     <string name="dinner_type_salad">Salotos</string>
     <string name="add_dinner_name">Patiekalo pavadinimas</string>
+    <string name="dish_name_error">Įveskite patiekalo pavadinimą</string>
     <string name="add_dinner_price">Kaina</string>
+    <string name="dinner_price_error">Įveskite kainą</string>
     <string name="add_dinner_delivery">Pristatymas</string>
     <string name="radio_yes">Taip</string>
     <string name="radio_no">Ne</string>

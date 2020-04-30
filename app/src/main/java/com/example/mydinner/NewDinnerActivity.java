@@ -42,8 +42,7 @@ public class NewDinnerActivity extends AppCompatActivity {
                 boolean salad = checkSalad.isChecked();
 
                 String inputDinnerName = dinnerName.getText().toString();
-                // converts input string value to double
-                double inputDinnerPrice = Double.parseDouble(dinnerPrice.getText().toString());
+                String inputDinnerPrice = dinnerPrice.getText().toString();
 
                 // finds radio button id which is selected
                 int selectedDeliveryId = radioDeliveryGroup.getCheckedRadioButtonId();
@@ -59,18 +58,42 @@ public class NewDinnerActivity extends AppCompatActivity {
                 //gets value from spinner
                 String paymentType = String.valueOf(spinnerPaymentType.getSelectedItem());
 
-                Dinner dinner = new Dinner(soup, mainDish, salad, inputDinnerName, inputDinnerPrice, deliverable, paymentType);
+                checkedSoup.setError(null);
+                dinnerName.setError(null);
+                dinnerPrice.setError(null);
 
-                Toast.makeText(NewDinnerActivity.this,
-                        getResources().getString(R.string.add_dinner_type) + ": " +  dinner.getDishTypes() + "\n" +
-                        getResources().getString(R.string.add_dinner_name) + ": " + dinner.getDishName() + "\n" +
-                        getResources().getString(R.string.add_dinner_price) + ": " + dinner.getPrice() + "\n" +
-                        getResources().getString(R.string.add_dinner_delivery) + ": " + radioDeliveryValue + "\n" +
-                        getResources().getString(R.string.add_dinner_payment) + ": " + dinner.getPaymentType(),
-                        Toast.LENGTH_LONG).show();
+                if (Validation.isValidDinnerName(inputDinnerName) &&
+                        Validation.isValidDinnerPrice(inputDinnerPrice) &&
+                        (soup || mainDish || salad)) {
+                    // converts input string value to double
+                    double Price = Double.parseDouble(inputDinnerPrice);
 
-                Intent goToSearchActivity = new Intent(NewDinnerActivity.this, SearchActivity.class);
-                startActivity(goToSearchActivity);
+                    Dinner dinner = new Dinner(soup, mainDish, salad, inputDinnerName, Price, deliverable, paymentType);
+
+                    Toast.makeText(NewDinnerActivity.this,
+                            getResources().getString(R.string.add_dinner_type) + ": " +  dinner.getDishTypes() + "\n" +
+                                    getResources().getString(R.string.add_dinner_name) + ": " + dinner.getDishName() + "\n" +
+                                    getResources().getString(R.string.add_dinner_price) + ": " + dinner.getPrice() + "\n" +
+                                    getResources().getString(R.string.add_dinner_delivery) + ": " + radioDeliveryValue + "\n" +
+                                    getResources().getString(R.string.add_dinner_payment) + ": " + dinner.getPaymentType(),
+                            Toast.LENGTH_LONG).show();
+
+                    Intent goToSearchActivity = new Intent(NewDinnerActivity.this, SearchActivity.class);
+                    startActivity(goToSearchActivity);
+                } else {
+                    if (!Validation.isValidDinnerName(inputDinnerName)) {
+                        dinnerName.setError(getResources().getString(R.string.dish_name_error));
+                    }
+                    if (!Validation.isValidDinnerPrice(inputDinnerPrice)) {
+                        dinnerPrice.setError(getResources().getString(R.string.dinner_price_error));
+                    }
+                    if (!soup && !mainDish && !salad) {
+                        checkedSoup.setFocusableInTouchMode(true);
+                        checkedSoup.setError(getResources().getString(R.string.dish_type_error));
+                    }
+                }
+
+
             }
         });
     }
