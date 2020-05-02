@@ -114,14 +114,16 @@
 
         <RadioGroup
             android:id="@+id/radio_delivery"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:weightSum="2">
 
             <RadioButton
                 android:id="@+id/radio_deliver_yes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="@string/radio_yes"
                 android:checked="true"
                 />
@@ -130,6 +132,7 @@
                 android:id="@+id/radio_delivery_no"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="@string/radio_no"
                 />
         </RadioGroup>
