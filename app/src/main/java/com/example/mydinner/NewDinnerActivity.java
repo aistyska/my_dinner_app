@@ -3,6 +3,7 @@ package com.example.mydinner;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +13,28 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.protocol.ClientContext;
+import org.apache.http.impl.client.BasicCookieStore;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.cookie.BasicClientCookie;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.protocol.BasicHttpContext;
+import org.apache.http.protocol.HttpContext;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import javax.net.ssl.HttpsURLConnection;
 
 public class NewDinnerActivity extends AppCompatActivity {
 
@@ -76,10 +99,11 @@ public class NewDinnerActivity extends AppCompatActivity {
                                     getResources().getString(R.string.add_dinner_price) + ": " + dinner.getPrice() + "\n" +
                                     getResources().getString(R.string.add_dinner_delivery) + ": " + radioDeliveryValue + "\n" +
                                     getResources().getString(R.string.add_dinner_payment) + ": " + dinner.getPaymentType(),
-                            Toast.LENGTH_LONG).show();
+                            Toast.LENGTH_SHORT).show();
+                    insertDinnerToDB(dinner);
 
-                    Intent goToSearchActivity = new Intent(NewDinnerActivity.this, SearchActivity.class);
-                    startActivity(goToSearchActivity);
+
+
                 } else {
                     if (!Validation.isValidDinnerName(inputDinnerName)) {
                         dinnerName.setError(getResources().getString(R.string.dish_name_error));
@@ -96,5 +120,68 @@ public class NewDinnerActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+
+    public void insertDinnerToDB(final Dinner dinner) {
+
+        class InsertDinner extends AsyncTask<String, Void, String> {
+
+            @Override
+            protected String doInBackground(String... params) {
+                String serverURL = "http://aistyapp.byethost31.com/insertDinner.php";
+
+                List<NameValuePair> nameValue = new ArrayList<NameValuePair>();
+
+                nameValue.add(new BasicNameValuePair("soup", String.valueOf(dinner.isSoup())));
+                nameValue.add(new BasicNameValuePair("mainDish", String.valueOf(dinner.isMainDish())));
+                nameValue.add(new BasicNameValuePair("salad", String.valueOf(dinner.isSalad())));
+                nameValue.add(new BasicNameValuePair("name", dinner.getDishName()));
+                nameValue.add(new BasicNameValuePair("price", String.valueOf(dinner.getPrice())));
+                nameValue.add(new BasicNameValuePair("deliverable", String.valueOf(dinner.isDeliverable())));
+                nameValue.add(new BasicNameValuePair("payment", dinner.getPaymentType()));
+
+                try {
+                    BasicCookieStore cookieStore = new BasicCookieStore();
+                    BasicClientCookie cookie = new BasicClientCookie("__test", "e5e4b30a3699e26c5ecd32704080416c");
+                    cookie.setDomain(".aistyapp.byethost31.com");
+                    cookie.setPath("/");
+                    cookieStore.addCookie(cookie);
+
+                    HttpClient httpClient = new DefaultHttpClient();
+                    HttpPost httpPost = new HttpPost(serverURL);
+                    httpPost.setEntity(new UrlEncodedFormEntity(nameValue));
+                    HttpContext localContext = new BasicHttpContext();
+                    localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
+                    HttpResponse httpResponse = httpClient.execute(httpPost, localContext);
+                    return String.valueOf(httpResponse.getStatusLine().getStatusCode());
+
+                } catch (ClientProtocolException e) {
+
+                } catch (IOException e) {
+
+                }
+
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+
+                if (s.equals(Integer.toString(HttpsURLConnection.HTTP_OK))) {
+                    Toast.makeText(NewDinnerActivity.this, getString(R.string.dinner_saved_success), Toast.LENGTH_LONG).show();
+
+                    Intent goToSearchActivity = new Intent(NewDinnerActivity.this, SearchActivity.class);
+                    startActivity(goToSearchActivity);
+                } else {
+                    Toast.makeText(NewDinnerActivity.this, getString(R.string.dinner_save_failed), Toast.LENGTH_LONG).show();
+                }
+            }
+        }
+
+        InsertDinner insertDinner = new InsertDinner();
+        insertDinner.execute();
+
     }
 }

@@ -34,4 +34,6 @@
         <item>Bankinis pavedimas</item>
         <item>Grynieji</item>
     </string-array>
+    <string name="dinner_saved_success">Įrašas buvo išsaugotas</string>
+    <string name="dinner_save_failed">Įrašo išsaugoti nepavyko</string>
 </resources>
