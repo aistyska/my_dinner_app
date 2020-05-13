@@ -14,7 +14,6 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
@@ -31,7 +30,6 @@ import org.apache.http.protocol.HttpContext;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -88,13 +86,25 @@ public class NewDinnerActivity extends AppCompatActivity {
                 if (Validation.isValidDinnerName(inputDinnerName) &&
                         Validation.isValidDinnerPrice(inputDinnerPrice) &&
                         (soup || mainDish || salad)) {
+
+                    String dinnerType = "";
+                    if(soup) {
+                        dinnerType += checkedSoup.getText().toString() + " ";
+                    }
+                    if (mainDish) {
+                        dinnerType += checkMainDish.getText().toString() + " ";
+                    }
+                    if (salad) {
+                        dinnerType += checkSalad.getText().toString() + " ";
+                    }
+
                     // converts input string value to double
                     double Price = Double.parseDouble(inputDinnerPrice);
 
-                    Dinner dinner = new Dinner(soup, mainDish, salad, inputDinnerName, Price, deliverable, paymentType);
+                    Dinner dinner = new Dinner(dinnerType, inputDinnerName, Price, deliverable, paymentType);
 
                     Toast.makeText(NewDinnerActivity.this,
-                            getResources().getString(R.string.add_dinner_type) + ": " +  dinner.getDishTypes() + "\n" +
+                            getResources().getString(R.string.add_dinner_type) + ": " +  dinner.getDishType() + "\n" +
                                     getResources().getString(R.string.add_dinner_name) + ": " + dinner.getDishName() + "\n" +
                                     getResources().getString(R.string.add_dinner_price) + ": " + dinner.getPrice() + "\n" +
                                     getResources().getString(R.string.add_dinner_delivery) + ": " + radioDeliveryValue + "\n" +
@@ -133,9 +143,7 @@ public class NewDinnerActivity extends AppCompatActivity {
 
                 List<NameValuePair> nameValue = new ArrayList<NameValuePair>();
 
-                nameValue.add(new BasicNameValuePair("soup", String.valueOf(dinner.isSoup())));
-                nameValue.add(new BasicNameValuePair("mainDish", String.valueOf(dinner.isMainDish())));
-                nameValue.add(new BasicNameValuePair("salad", String.valueOf(dinner.isSalad())));
+                nameValue.add(new BasicNameValuePair("type", dinner.getDishType()));
                 nameValue.add(new BasicNameValuePair("name", dinner.getDishName()));
                 nameValue.add(new BasicNameValuePair("price", String.valueOf(dinner.getPrice())));
                 nameValue.add(new BasicNameValuePair("deliverable", String.valueOf(dinner.isDeliverable())));
@@ -159,7 +167,8 @@ public class NewDinnerActivity extends AppCompatActivity {
                 } catch (ClientProtocolException e) {
 
                 } catch (IOException e) {
-
+                    e.printStackTrace();
+                    return e.toString();
                 }
 
                 return null;

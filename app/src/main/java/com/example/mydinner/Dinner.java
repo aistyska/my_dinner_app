@@ -5,46 +5,26 @@ import java.util.List;
 
 public class Dinner {
 
-    private boolean soup;
-    private boolean mainDish;
-    private boolean salad;
+    private String dishType;
     private String dishName;
     private double price;
     private boolean deliverable;
     private String paymentType;
 
-    public Dinner(boolean soup, boolean mainDish, boolean salad, String dishName, double price, boolean deliverable, String paymentType) {
-        this.soup = soup;
-        this.mainDish = mainDish;
-        this.salad = salad;
+    public Dinner(String dishType, String dishName, double price, boolean deliverable, String paymentType) {
+        this.dishType = dishType;
         this.dishName = dishName;
         this.price = price;
         this.deliverable = deliverable;
         this.paymentType = paymentType;
     }
 
-    public boolean isSoup() {
-        return soup;
+    public String getDishType() {
+        return dishType;
     }
 
-    public void setSoup(boolean soup) {
-        this.soup = soup;
-    }
-
-    public boolean isMainDish() {
-        return mainDish;
-    }
-
-    public void setMainDish(boolean mainDish) {
-        this.mainDish = mainDish;
-    }
-
-    public boolean isSalad() {
-        return salad;
-    }
-
-    public void setSalad(boolean salad) {
-        this.salad = salad;
+    public void setDishType(String dishType) {
+        this.dishType = dishType;
     }
 
     public String getDishName() {
@@ -78,19 +58,4 @@ public class Dinner {
     public void setPaymentType(String paymentType) {
         this.paymentType = paymentType;
     }
-
-    public List<String> getDishTypes() {
-        List<String> dishTypesArray = new ArrayList<>();
-        if (soup) {
-            dishTypesArray.add("Sriuba");
-        }
-        if (mainDish) {
-            dishTypesArray.add("Pagrindinis");
-        }
-        if (salad) {
-            dishTypesArray.add("Salotos");
-        }
-        return dishTypesArray;
-    }
-
 }
