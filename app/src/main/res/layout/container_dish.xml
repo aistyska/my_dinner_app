@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:clickable="true"
+    android:padding="10dp"
+    android:background="@color/colorBackground">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_dinner_name"
+        android:id="@+id/textName"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/colorRegister"
+        android:textStyle="bold"
+        android:textAllCaps="true"
+        android:layout_marginLeft="8dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_dinner_price"
+        android:id="@+id/textPrice"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold"
+        android:textAllCaps="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textName"
+        />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_dinner_type"
+        android:id="@+id/textType"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold"
+        android:textAllCaps="true"
+        android:layout_marginLeft="8dp"
+        android:layout_below="@id/textName"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/add_dinner_delivery"
+        android:id="@+id/textDelivery"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold"
+        android:textAllCaps="true"
+        android:layout_marginLeft="8dp"
+        android:layout_below="@+id/textType"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/add_dinner_payment"
+        android:id="@+id/textPayment"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold"
+        android:textAllCaps="true"
+        android:layout_marginLeft="8dp"
+        android:layout_below="@+id/textDelivery"
+        />
+
+</RelativeLayout>
