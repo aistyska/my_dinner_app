@@ -12,6 +12,9 @@
     <string name="register_invalid_username">Prisijungimo vardas turi būti sudarytas iš 3-20 raidžių</string>
     <string name="register_invalid_password">Slaptažodį turi būti sudarytas iš 5-20 simbolių (raidžių, skaičių bei .!@_)</string>
     <string name="register_ivalid_email">El. pašto adresą turi sudaryti nuo 10 iki 50 simbolių</string>
+    <string name="register_success">Registracija sėkminga</string>
+    <string name="register_user_exists">Toks vartotojas jau egzistuoja</string>
+    <string name="register_failed">Registacija nepavyko, bandykite dar kartą</string>
     <string name="search">Paieška</string>
     <string name="search_add_dinner">Pridėti pietus</string>
     <string name="add_dinner">Pietų pridėjimas</string>

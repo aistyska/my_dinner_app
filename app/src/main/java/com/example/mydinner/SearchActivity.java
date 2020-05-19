@@ -157,7 +157,7 @@ public class SearchActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
 
             if (result.equals("no rows")) {
-                Toast.makeText(SearchActivity.this, "Rezultau nera", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SearchActivity.this, "Rezultatu nera", Toast.LENGTH_SHORT).show();
             } else {
                 try {
                     dinners.clear();
