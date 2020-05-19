@@ -1,6 +1,5 @@
 package com.example.mydinner;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -40,7 +39,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.net.ssl.HttpsURLConnection;
 
 public class SearchActivity extends AppCompatActivity {
     SearchView searchView = null;
@@ -78,9 +76,7 @@ public class SearchActivity extends AppCompatActivity {
 
         MenuItem searchItem = menu.findItem(R.id.action_search);
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-//        searchView = (SearchView) searchItem.getActionView();
-//        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-////        searchView.setIconified(false);
+
         if (searchView == null) {
             searchView = (SearchView) searchItem.getActionView();
         }
